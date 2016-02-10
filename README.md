@@ -1,4 +1,6 @@
 # LightDataC
 
-Collection of light data structure headers for C99
+Collection of minimalistic data structure headers for C99
 
+- Stack
+- Queue
