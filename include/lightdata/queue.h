@@ -11,13 +11,19 @@
 	if(s) printf("queue not empty");
 *****************************************/
 
-typedef _Queue; typedef struct _Queue{ Stack* e; Stack* f;} Queue;
+typedef _Queue; typedef struct _Queue{ Stack* e; Stack* f; } Queue;
 
 void* dequeue(Queue** q)
 {
 	void* d = 0;
+	Stack* t = 0;
 	
-	if (*q) d = pop(&(*q)->e);
+	if (*q)
+		d = (*q)->e->d,
+		t = (*q)->e,
+		(*q)->e = (*q)->e->n,
+		free(t);
+	
 	if (!(*q)->e) free(*q);
 	
 	return d;
@@ -25,13 +31,16 @@ void* dequeue(Queue** q)
 
 void enqueue(Queue** q, void* d)
 {
+	Stack* t = 0;
+	
 	if(*q)
-		push(&(*q)->f->n,d),
-		(*q)->f = (*q)->f->n;
+		(*q)->f->n = (Stack*)malloc(sizeof(Stack)),
+		(*q)->f = (*q)->f->n,
+		(*q)->f->d = d;
 	else
 		(*q) = (Queue*)malloc(sizeof(Queue)),
-		(*q)->e=0,
-		push(&(*q)->e,d),
+		(*q)->e = (Stack*)malloc(sizeof(Stack)),
+		(*q)->e->d = d,
 		(*q)->f = (*q)->e;
 }
 
