@@ -1,6 +1,7 @@
 #ifndef LIGHTDATA_QUEUE
 #define LIGHTDATA_QUEUE
 #include <stdlib.h>
+#include "stack.h"
 
 /****************************************
 	int in = 10;
@@ -10,21 +11,28 @@
 	if(s) printf("queue not empty");
 *****************************************/
 
-typedef _Queue; typedef struct _Queue{void* d; _Queue* n;} Queue;
+typedef _Queue; typedef struct _Queue{ Stack* e; Stack* f;} Queue;
 
-void* dequeue(Queue** s)
+void* dequeue(Queue** q)
 {
-	Queue*t=0;void*d=0;
-	if(*s)(*s)->d,t=(*s),(*s)=(*s)->n,free(t);
+	void* d = 0;
+	
+	if (*q) d = pop(&(*q)->e);
+	if (!(*q)->e) free(*q);
+	
 	return d;
 }
 
-void enqueue(Queue** s, void* d)
+void enqueue(Queue** q, void* d)
 {
-	Queue*t=(Stack*)malloc(sizeof(Queue)),*p=(*s);
-	if(p)while(p->n)p=p->n;
-	if((*s)==0)(*s)=t,(*s)->d=d;
-	else t->d=d,p->n=t;
+	if(*q)
+		push(&(*q)->f->n,d),
+		(*q)->f = (*q)->f->n;
+	else
+		(*q) = (Queue*)malloc(sizeof(Queue)),
+		(*q)->e=0,
+		push(&(*q)->e,d),
+		(*q)->f = (*q)->e;
 }
 
 #endif
