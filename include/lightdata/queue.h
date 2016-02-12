@@ -5,7 +5,7 @@
 typedef _QNode; typedef struct _QNode{ void* d; _QNode* n; } QueueNode;
 typedef _Queue; typedef struct _Queue{ QueueNode* e; QueueNode* f; } Queue;
 
-void* dequeue(Queue** q)
+void* queue_pop(Queue** q)
 {
 	void* d = 0;
 	QueueNode* t = 0;
@@ -21,7 +21,7 @@ void* dequeue(Queue** q)
 	return d;
 }
 
-void enqueue(Queue** q, void* d)
+void queue_push(Queue** q, void* d)
 {
 	QueueNode* t = (QueueNode*)malloc(sizeof(QueueNode));
 	

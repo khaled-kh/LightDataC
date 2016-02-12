@@ -4,7 +4,7 @@
 
 typedef _Stack; typedef struct _Stack{ void* d; _Stack* n; } Stack;
 
-void* pop(Stack** s)
+void* stack_pop(Stack** s)
 {
 	void* d = 0;
 	Stack* t = 0;
@@ -18,7 +18,7 @@ void* pop(Stack** s)
 	return d;
 }
 
-void push(Stack** s, void* d)
+void stack_push(Stack** s, void* d)
 {
 	Stack* t = 0;
 	

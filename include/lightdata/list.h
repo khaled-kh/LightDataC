@@ -5,15 +5,15 @@
 typedef _LNode; typedef struct _LNode{ void* d; _LNode* n; _LNode* p; } LNode;
 typedef _List; typedef struct _List{ LNode* f; LNode* e; int size; } List;
 
-LNode* begin(List** l){ return *l?(*l)->f:0; }
-LNode* end(List** l){ return *l?(*l)->e:0; }
+LNode* list_begin(List** l){ return *l?(*l)->f:0; }
+LNode* list_end(List** l){ return *l?(*l)->e:0; }
 
-void next(LNode** t){ *t = *t?(*t)->n:0; }
-void prev(LNode** t){ *t = *t?(*t)->p:0; }
+void list_iterator_next(LNode** t){ *t = *t?(*t)->n:0; }
+void list_iterator_prev(LNode** t){ *t = *t?(*t)->p:0; }
 
-int size(List** l){ return *l?(*l)->size:0; }
+int list_size(List** l){ return *l?(*l)->size:0; }
 
-void push_front(List** l, void* d)
+void list_push_front(List** l, void* d)
 {
 	LNode*t = (LNode)malloc(sizeof(LNode));
 	t->d = d;
@@ -30,7 +30,7 @@ void push_front(List** l, void* d)
 	(*l)->size++;
 }
 
-void push_back(List** l, void* d)
+void list_push_back(List** l, void* d)
 {
 	LNode*t = (LNode)malloc(sizeof(LNode));
 	t->d = d;
@@ -47,7 +47,7 @@ void push_back(List** l, void* d)
 	(*l)->size++;
 }
 
-void* pop_front(List** l)
+void* list_pop_front(List** l)
 {
 	LNode* t = 0;
 	void* d = 0;
@@ -65,7 +65,7 @@ void* pop_front(List** l)
 	return d;
 }
 
-void* pop_back(List** l)
+void* list_pop_back(List** l)
 {
 	LNode* t = 0;
 	void* d = 0;
