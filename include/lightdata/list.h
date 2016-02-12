@@ -2,12 +2,6 @@
 #define LIGHTDATA_LIST
 #include <stdlib.h>
 
-/****************************************
-	List* l = 0;
-	
-	if(l) printf("List not empty");
-*****************************************/
-
 typedef _LNode; typedef struct _LNode{ void* d; _LNode* n; _LNode* p; } LNode;
 typedef _List; typedef struct _List{ LNode* f; LNode* e; int size; } List;
 

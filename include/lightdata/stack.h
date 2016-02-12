@@ -2,14 +2,6 @@
 #define LIGHTDATA_STACK
 #include <stdlib.h>
 
-/****************************************
-	int in = 10;
-	Stack* s = 0;
-	push(&s, in);
-	int out = (int)pop(&s);
-	if(s) printf("stack not empty");
-*****************************************/
-
 typedef _Stack; typedef struct _Stack{ void* d; _Stack* n; } Stack;
 
 void* pop(Stack** s)

@@ -2,14 +2,6 @@
 #define LIGHTDATA_QUEUE
 #include <stdlib.h>
 
-/****************************************
-	int in = 10;
-	Queue* s = 0;
-	enqueue(&s, in);
-	int out = (int)dequeue(&s);
-	if(s) printf("queue not empty");
-*****************************************/
-
 typedef _QNode; typedef struct _QNode{ void* d; _QNode* n; } QueueNode;
 typedef _Queue; typedef struct _Queue{ QueueNode* e; QueueNode* f; } Queue;
 
