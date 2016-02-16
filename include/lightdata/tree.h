@@ -11,7 +11,7 @@ int btree_depth(BTree** t){ return *t ? btree_max(btree_depth((*t)->l), btree_de
 void btree_insert(BTree** t, int k, void* d)
 {
 	if(*t)
-		btree_insert(k > (*t)->k? &(*t)->r: &(*t)->l);
+		btree_insert(k > (*t)->k? &(*t)->r: &(*t)->l, k, d);
 	else
 		(*t) = (BTree*)malloc(sizeof(BTree)),
 		(*t)->k = k,
@@ -22,12 +22,12 @@ BTree* btree_find(BTree** t, int k)
 {
 	if (!(*t)) return 0;
 	else if (k == (*t)->k) return (*t);
-	else return k > (*t)->k ? btree_find((*t)->r,k) : btree_find((*t)->l,k);
+	else return k > (*t)->k ? btree_find((*t)->r, k) : btree_find((*t)->l, k);
 }
 
 void* btree_get(BTree** t, int k)
 {
-	BTree* f = btree_find(t,k);
+	BTree* f = btree_find(t, k);
 	return f ? f->d : 0;
 }
 
